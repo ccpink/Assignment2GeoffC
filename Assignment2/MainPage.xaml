@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="Assignment2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Assignment2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Target="TextBlock" Property="FontSize" Value="32"></Setter>
+        </Style>
+
+        <CollectionViewSource x:Name="FilesCollection" Source="{x:Bind viewModel.Files}"/>
+
+        <DataTemplate x:Key="FileMasterTemplate" x:DataType="local:TextFileModel" >
+            <StackPanel Orientation="Horizontal" Margin="6">
+                <TextBlock Text="{x:Bind FileName}" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <CommandBar DataContext="{Binding Source={StaticResource FilesCollection}}">
+            <AppBarButton Icon="Add" Label="New" Click="AddButton_Click" Command="{x:Bind viewModel.AddCommand}"></AppBarButton>
+            <AppBarButton Icon="Edit" Label="Edit" Command="{x:Bind viewModel.EditCommand}"></AppBarButton>
+            <AppBarButton Icon="Save" Label="Save" Command="{x:Bind viewModel.SaveCommand}"></AppBarButton>
+            <AppBarButton Icon="Delete" Label="Delete" Command="{x:Bind viewModel.DeleteCommand}"></AppBarButton>
+            <AppBarButton Icon="ClosePane" Label="Exit" Command="{x:Bind viewModel.ExitCommand}"></AppBarButton>
+        </CommandBar>
+    </Page.TopAppBar>
+
+
+    <StackPanel>
+        <StackPanel DataContext="{Binding Source={StaticResource FilesCollection}}" Margin="20">
+            <TextBlock x:Name="fileName" Text="{x:Bind viewModel.FileName, Mode=TwoWay}" ></TextBlock>
+        </StackPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="106*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="116*"/>
+                <ColumnDefinition Width="259*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="FilterTextbox" 
+                 Text="{x:Bind viewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="Search term here..."
+                 FontSize="24" Margin="10" Height="60"
+                 Grid.Row="0" Grid.Column="0"/>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="0" Height="700"  Margin="10,10,10,10">
+                <ListView ItemsSource="{Binding Source={StaticResource FilesCollection}}" SelectionChanged="ListView_SelectionChanged" 
+                              ItemTemplate="{Binding Source={StaticResource FileMasterTemplate}}"
+                          SelectedItem="{x:Bind viewModel.SelectedFile,Mode=TwoWay}" Name="fileSelection">
+                </ListView>
+            </ScrollViewer>
+
+
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="20">
+                <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Height="725" AcceptsReturn="True" TextWrapping="Wrap" Text="{x:Bind viewModel.FileText, Mode=TwoWay}">
+
+                </TextBox>
+            </StackPanel>
+            
+            
+            
+        </Grid>
+    </StackPanel>
+
+
+    
+</Page>
