@@ -34,6 +34,7 @@ namespace Assignment2
 
             //Make it so you can edit the text box
             myTextBox.IsReadOnly = false;
+            viewModel.canDelete = false;
             viewModel.canSave = true;
             viewModel.canEdit = false;
             viewModel.isNew = true;
