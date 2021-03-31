@@ -27,15 +27,10 @@ namespace Assignment2
             return viewModel.canDelete;
         }
 
-        public async void Execute(object parameter)
+        public void Execute(object parameter)
         {
-
-            DeleteDialog deleteDialog = new DeleteDialog();
-            await deleteDialog.ShowAsync();
-
-            if (deleteDialog.canDelete == true) { 
             //Delete current selected file
-            viewModel.DeleteFile();
+            viewModel.DeleteFile().Wait();
 
             //Set everything to empty
             viewModel.SelectedFile = new TextFileModel("", "", "");
@@ -46,7 +41,6 @@ namespace Assignment2
             viewModel.changesMade();
             viewModel.PerformFiltering();
             viewModel.CreateCollection();
-            }
         }
 
         public void FireCanExecuteChanged()

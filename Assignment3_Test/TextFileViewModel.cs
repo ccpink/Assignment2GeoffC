@@ -47,7 +47,6 @@ namespace Assignment2
         public AddCommand AddCommand { get; }
         public EditCommand EditCommand { get; }
         public DeleteCommand DeleteCommand { get; }
-        public AboutCommand AboutCommand { get; }
         public SaveCommand SaveCommand { get; }
         public ExitCommand ExitCommand { get; }
 
@@ -93,7 +92,6 @@ namespace Assignment2
             EditCommand.FireCanExecuteChanged();
             SaveCommand.FireCanExecuteChanged();
             ExitCommand.FireCanExecuteChanged();
-            AboutCommand.FireCanExecuteChanged();
 
         }
 
@@ -111,7 +109,6 @@ namespace Assignment2
             this.AddCommand = new AddCommand(this, tfb);
             this.EditCommand = new EditCommand(this, tfb);
             this.SaveCommand = new SaveCommand(this, tfb);
-            this.AboutCommand = new AboutCommand();
             this.ExitCommand = new ExitCommand();
 
 
@@ -146,7 +143,7 @@ namespace Assignment2
                      }
                     catch (FileNotFoundException e)
                     {
-                        Console.WriteLine(e);
+
                     }
                 }
             }
@@ -156,7 +153,7 @@ namespace Assignment2
 
 
         //Create a new file
-        public async void CreateNewFile(string fileName, string text)
+        public async Task CreateNewFile(string fileName, string text)
         {
             Windows.Storage.StorageFile sampleFile = await textfileFolder.CreateFileAsync((fileName + ".txt"),
                 Windows.Storage.CreationCollisionOption.ReplaceExisting);
@@ -164,7 +161,7 @@ namespace Assignment2
         }
 
         //Create a new file
-        public async void CreateNewFile(string fileName)
+        public async Task CreateNewFile(string fileName)
         {
             Windows.Storage.StorageFile sampleFile = await textfileFolder.CreateFileAsync((fileName + ".txt"),
                 Windows.Storage.CreationCollisionOption.ReplaceExisting);
@@ -173,7 +170,7 @@ namespace Assignment2
         }
 
         //Write to an existing file
-        public async void WriteToFile(string text)
+        public async Task WriteToFile(string text)
         {
             Windows.Storage.StorageFile sampleFile =
                 await textfileFolder.GetFileAsync(FileName + ".txt");
@@ -182,12 +179,14 @@ namespace Assignment2
         }
 
         //Delete a file
-        public async void DeleteFile()
+        public async Task DeleteFile()
         {
+            
             Windows.Storage.StorageFile sampleFile =
                 await textfileFolder.GetFileAsync(FileName + ".txt");
 
             await sampleFile.DeleteAsync();
+            
         }
 
 
@@ -248,7 +247,7 @@ namespace Assignment2
         }
 
 
-        public bool nameExists(string text)
+        public bool NameExists(string text)
         {
             //For each file check if the name is there if it is set true else false
             foreach (TextFileModel file in Files)
@@ -262,8 +261,25 @@ namespace Assignment2
             return false;
         }
 
+        public bool isTrue;
+        public async Task CanGetFile(string fileName)
+        {
 
-       
+            try
+            {
+
+                Windows.Storage.StorageFile sampleFile =
+                    await textfileFolder.GetFileAsync(fileName + ".txt");
+
+                isTrue = true;
+            }
+            catch (FileNotFoundException)
+            {
+                isTrue = false;
+            }
+
+
+        }
 
     }
 }

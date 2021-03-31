@@ -28,7 +28,8 @@
             <AppBarButton Icon="Edit" Label="Edit" Command="{x:Bind viewModel.EditCommand}"></AppBarButton>
             <AppBarButton Icon="Save" Label="Save" Command="{x:Bind viewModel.SaveCommand}"></AppBarButton>
             <AppBarButton Icon="Delete" Label="Delete" Command="{x:Bind viewModel.DeleteCommand}"></AppBarButton>
-            <AppBarButton Icon="ClosePane" Label="Exit" Command="{x:Bind viewModel.ExitCommand}"></AppBarButton>
+            <AppBarButton Icon="Account" Label="About" Command="{x:Bind viewModel.AboutCommand}"></AppBarButton>
+            <AppBarButton Icon="ClearSelection" Label="Exit" Command="{x:Bind viewModel.ExitCommand}"></AppBarButton>
         </CommandBar>
     </Page.TopAppBar>
 

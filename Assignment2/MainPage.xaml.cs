@@ -37,25 +37,17 @@ namespace Assignment2
         }
         
 
+        
 
         //I couldn't get rid of them without crashing the program multiple times
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
         }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
+
+
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
+
     }
 }

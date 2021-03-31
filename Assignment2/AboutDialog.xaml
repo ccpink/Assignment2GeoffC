@@ -1,0 +1,25 @@
+﻿<ContentDialog
+    x:Class="Assignment2.AboutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Assignment2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Width="900"
+    Height="900"
+    Title="About section: "
+    SecondaryButtonText="Close"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+
+
+    >
+    <RichTextBlock Height="200" Width="500">
+        <Paragraph>
+            <Run Text="Note program: By Charles Pink &#x0a; &#x0a;This program was created during second year second semester &#x0a;It was a project that spanned three weeks. It focus's on XAML dev enviroment &#x0a; &#x0a;The program is supposed to be able to save and update files. Like OneNote from Microsoft &#x0a;&#x0a;Current build: 0.5"   Foreground="WhiteSmoke"/>
+        </Paragraph>
+    </RichTextBlock>
+    
+    
+    
+</ContentDialog>
