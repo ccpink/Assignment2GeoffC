@@ -21,8 +21,10 @@ namespace Assignment2
 
         public async void Execute(object parameter)
         {
-            AboutDialog aboutDialog = new AboutDialog();
-            await aboutDialog.ShowAsync();
+            /*AboutDialog aboutDialog = new AboutDialog();
+            await aboutDialog.ShowAsync();*/
+
+            
         }
 
         public void FireCanExecuteChanged()

@@ -33,19 +33,21 @@ namespace Assignment2
             DeleteDialog deleteDialog = new DeleteDialog();
             await deleteDialog.ShowAsync();
 
-            if (deleteDialog.canDelete == true) { 
-            //Delete current selected file
-            viewModel.DeleteFile();
+            if (deleteDialog.canDelete == true) {
+                //Delete current selected file
+                //viewModel.DeleteFile();
+                DataRepo.DeleteData(viewModel.SelectedFile.NoteID);
 
-            //Set everything to empty
-            viewModel.SelectedFile = new TextFileModel("", "", "");
 
-            viewModel.canEdit = false;
-            viewModel.canSave = false;
+                //Set everything to empty
+                viewModel.SelectedFile = new TextFileModel("", "", "");
 
-            viewModel.changesMade();
-            viewModel.PerformFiltering();
-            viewModel.CreateCollection();
+                viewModel.canEdit = false;
+                viewModel.canSave = false;
+
+                viewModel.changesMade();
+                viewModel.PerformFiltering();
+                viewModel.CreateCollection();
             }
         }
 

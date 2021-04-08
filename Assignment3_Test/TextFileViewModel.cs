@@ -67,8 +67,8 @@ namespace Assignment2
                 }
                 else //Set its text to the files text
                 {
-                    FileText = value.FileText;
-                    FileName = value.FileName;
+                    FileText = value.NoteText;
+                    FileName = value.NoteName;
                     FilePath = value.FilePath;
                     canDelete = true;
                     canEdit = true;
@@ -205,7 +205,7 @@ namespace Assignment2
 
             //Use LINQ query to get all personmodel names that match filter text, as a list
             var result =
-                _allFiles.Where(d => d.FileName.ToLowerInvariant()
+                _allFiles.Where(d => d.NoteName.ToLowerInvariant()
                 .Contains(lowerCaseFilter))
                 .ToList();
 
@@ -252,7 +252,7 @@ namespace Assignment2
             //For each file check if the name is there if it is set true else false
             foreach (TextFileModel file in Files)
             {
-                if(text == file.FileName)
+                if(text == file.NoteName)
                 {
                     return true;
                 }

@@ -47,7 +47,7 @@ namespace Assignment2
         public AddCommand AddCommand { get; }
         public EditCommand EditCommand { get; }
         public DeleteCommand DeleteCommand { get; }
-        public AboutCommand AboutCommand { get; }
+       /* public AboutCommand AboutCommand { get; }*/
         public SaveCommand SaveCommand { get; }
         public ExitCommand ExitCommand { get; }
 
@@ -68,8 +68,8 @@ namespace Assignment2
                 }
                 else //Set its text to the files text
                 {
-                    FileText = value.FileText;
-                    FileName = value.FileName;
+                    FileText = value.NoteText;
+                    FileName = value.NoteName;
                     FilePath = value.FilePath;
                     canDelete = true;
                     canEdit = true;
@@ -93,7 +93,7 @@ namespace Assignment2
             EditCommand.FireCanExecuteChanged();
             SaveCommand.FireCanExecuteChanged();
             ExitCommand.FireCanExecuteChanged();
-            AboutCommand.FireCanExecuteChanged();
+            /*AboutCommand.FireCanExecuteChanged();*/
 
         }
 
@@ -111,9 +111,10 @@ namespace Assignment2
             this.AddCommand = new AddCommand(this, tfb);
             this.EditCommand = new EditCommand(this, tfb);
             this.SaveCommand = new SaveCommand(this, tfb);
-            this.AboutCommand = new AboutCommand();
+            /*this.AboutCommand = new AboutCommand();*/
             this.ExitCommand = new ExitCommand();
 
+            
 
             //Create the collection
             CreateCollection();
@@ -130,9 +131,12 @@ namespace Assignment2
             _allFiles.Clear();
             Files.Clear();
 
-            StorageFolder textFolder = ApplicationData.Current.LocalFolder;
+            /*StorageFolder textFolder = ApplicationData.Current.LocalFolder;
 
             IReadOnlyList<StorageFile> storageFiles = await textFolder.GetFilesAsync();
+
+            
+
 
             //For each file input into all files list
             foreach (StorageFile file in storageFiles)
@@ -149,7 +153,9 @@ namespace Assignment2
                         Console.WriteLine(e);
                     }
                 }
-            }
+            }*/
+
+            _allFiles = DataRepo.GetData();
 
             PerformFiltering();
         }
@@ -206,7 +212,7 @@ namespace Assignment2
 
             //Use LINQ query to get all personmodel names that match filter text, as a list
             var result =
-                _allFiles.Where(d => d.FileName.ToLowerInvariant()
+                _allFiles.Where(d => d.NoteName.ToLowerInvariant()
                 .Contains(lowerCaseFilter))
                 .ToList();
 
@@ -253,7 +259,7 @@ namespace Assignment2
             //For each file check if the name is there if it is set true else false
             foreach (TextFileModel file in Files)
             {
-                if(text == file.FileName)
+                if(text == file.NoteName)
                 {
                     return true;
                 }

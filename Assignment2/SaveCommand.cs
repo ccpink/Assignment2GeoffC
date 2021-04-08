@@ -36,14 +36,20 @@ namespace Assignment2
                 SaveDialog saveDialog = new SaveDialog(viewModel);
                 await saveDialog.ShowAsync();
                 //If the result isn't empty then create a new file
-                if(!saveDialog.Exited) { 
-                    viewModel.CreateNewFile(saveDialog.Result, txt);
+                if(!saveDialog.Exited) {
+                    //viewModel.CreateNewFile(saveDialog.Result, txt);
+
+                    DataRepo.AddData(txt, saveDialog.Result);
+
                 }
 
             } else
             {
                 //Write to an existing file and save the new content
-                viewModel.WriteToFile(txt);
+                //viewModel.WriteToFile(txt);
+
+                DataRepo.UpdateData(viewModel.SelectedFile.NoteID, txt);
+
             }
             
 

@@ -16,7 +16,7 @@
 
         <DataTemplate x:Key="FileMasterTemplate" x:DataType="local:TextFileModel" >
             <StackPanel Orientation="Horizontal" Margin="6">
-                <TextBlock Text="{x:Bind FileName}" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{x:Bind NoteName}" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </DataTemplate>
 
@@ -24,19 +24,19 @@
 
     <Page.TopAppBar>
         <CommandBar DataContext="{Binding Source={StaticResource FilesCollection}}">
-            <AppBarButton Icon="Add" Label="New" Click="AddButton_Click" Command="{x:Bind viewModel.AddCommand}"></AppBarButton>
-            <AppBarButton Icon="Edit" Label="Edit" Command="{x:Bind viewModel.EditCommand}"></AppBarButton>
-            <AppBarButton Icon="Save" Label="Save" Command="{x:Bind viewModel.SaveCommand}"></AppBarButton>
-            <AppBarButton Icon="Delete" Label="Delete" Command="{x:Bind viewModel.DeleteCommand}"></AppBarButton>
-            <AppBarButton Icon="Account" Label="About" Command="{x:Bind viewModel.AboutCommand}"></AppBarButton>
-            <AppBarButton Icon="ClearSelection" Label="Exit" Command="{x:Bind viewModel.ExitCommand}"></AppBarButton>
+            <AppBarButton Icon="Add" Label="New" Click="AddButton_Click" Command="{x:Bind viewModel.AddCommand}" ToolTipService.ToolTip="Creates Blank Note."></AppBarButton>
+            <AppBarButton Icon="Edit" Label="Edit" Command="{x:Bind viewModel.EditCommand}" ToolTipService.ToolTip="Allows You To Edit Selected Note."></AppBarButton>
+            <AppBarButton Icon="Save" Label="Save" Command="{x:Bind viewModel.SaveCommand}" ToolTipService.ToolTip="Allows You To Save A Note."></AppBarButton>
+            <AppBarButton Icon="Delete" Label="Delete" Command="{x:Bind viewModel.DeleteCommand}" ToolTipService.ToolTip="Allows You To Delete A Selected Note." ></AppBarButton>
+            <AppBarButton Icon="Account" Label="About" Click="AppBarButton_Click" ToolTipService.ToolTip="About section"></AppBarButton>
+            <AppBarButton Icon="ClearSelection" Label="Exit" Command="{x:Bind viewModel.ExitCommand}" ToolTipService.ToolTip="Exits Program"></AppBarButton>
         </CommandBar>
     </Page.TopAppBar>
 
 
     <StackPanel>
         <StackPanel DataContext="{Binding Source={StaticResource FilesCollection}}" Margin="20">
-            <TextBlock x:Name="fileName" Text="{x:Bind viewModel.FileName, Mode=TwoWay}" ></TextBlock>
+            <TextBlock x:Name="fileName" Text="{x:Bind viewModel.FileName, Mode=TwoWay}" ToolTipService.ToolTip="Current Note"></TextBlock>
         </StackPanel>
 
         <Grid>
@@ -54,6 +54,7 @@
                  PlaceholderText="Search term here..."
                  FontSize="24" Margin="10" Height="60"
                  Grid.Row="0" Grid.Column="0"/>
+                    
 
             <ScrollViewer Grid.Row="1" Grid.Column="0" Height="700"  Margin="10,10,10,10">
                 <ListView ItemsSource="{Binding Source={StaticResource FilesCollection}}" SelectionChanged="ListView_SelectionChanged" 
@@ -65,7 +66,7 @@
 
 
             <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="20">
-                <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Height="725" AcceptsReturn="True" TextWrapping="Wrap" Text="{x:Bind viewModel.FileText, Mode=TwoWay}">
+                <TextBox ScrollViewer.HorizontalScrollMode="Auto" x:Name="fileText" Height="725" AcceptsReturn="True" TextWrapping="Wrap" Text="{x:Bind viewModel.FileText, Mode=TwoWay}" PlaceholderText="Note Contents Go Here">
 
                 </TextBox>
             </StackPanel>
